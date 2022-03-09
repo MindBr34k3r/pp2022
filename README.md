@@ -9,5 +9,5 @@ Students are expected to:
 Student Info
 =========================
 
-* Student Name: Nguyen Duc Minh
+* Student Name: Nguyễn Đức 
 * Student ID: BI11-180
