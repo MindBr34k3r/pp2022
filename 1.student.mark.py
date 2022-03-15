@@ -11,8 +11,7 @@ def input_course_info(info):
         id = input("Enter course ID : ")
         if not is_exist(info, id):
             name = input("Enter course name : ")
-            course = [name]
-            info[id] = course
+            info[id] = [name]
             num = num - 1
         else:
             print(f"This id existed.")
@@ -27,8 +26,7 @@ def input_student_info(info):
         if not is_exist(info, id):
             name = input("Input student's name: ")
             dob = input("Input student's date of birth (dd/mm/yyyy): ")
-            student = [name, dob]
-            info[id] = student
+            info[id] = [name, dob]
             num = num - 1
         else:
             print(f"This id existed.")
@@ -48,25 +46,24 @@ def list_course():
 
 
 def list_course_with_mark():
-    i = 0
     print("{:10} | {:20} | {:10}".format("ID", "Name", "Mark"))
     for key in course_with_mark:
-        name = str(course_with_mark[key][i][i])
-        mark = str(course_with_mark[key][i][i + 1])
+        name = str(course_with_mark[key][0][0])
+        mark = str(course_with_mark[key][0][1])
         print("{:10} | {:20} | {:10}".format(key, name, mark))
 
 
 def add_mark_to_course(course_mark, student, course):
-    input_course = input("Input a course's ID wanted to add marks: ")
+    input_course = input("Input a course's ID: ")
     for k_e_y in course:
         if k_e_y == input_course:
             course_mark[input_course] = []
             for key in student:
-                student_mark = input(f"Input student {key} / {student[key][0]}'s mark: ")
+                student_mark = input(f"Student ID: {key} - Student Name: {student[key][0]}\nInput mark: ")
                 course_mark[input_course].append([student[key][0], student_mark])
             break
         if k_e_y not in course:
-            print("Invalid course name!")
+            print(f"No {input_course} course exist!")
 
 
 def is_empty(dictionary):
