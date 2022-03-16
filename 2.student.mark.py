@@ -1,6 +1,6 @@
-from students import Student, StudentInfo
-from courses import Course, CourseInfo
-from mark import Mark, MarkInfo
+from courses import CourseInfo
+from mark import MarkInfo
+from students import StudentInfo
 
 end = False
 student_info = StudentInfo()
@@ -37,6 +37,3 @@ while not end:
         print("Goodbye!")
     else:
         print(f"{user_choice} is an invalid input!")
-
-
-

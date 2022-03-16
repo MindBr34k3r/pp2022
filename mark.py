@@ -1,7 +1,3 @@
-from courses import CourseInfo
-from students import StudentInfo
-
-
 class Mark:
     def __init__(self, id, name, mark):
         self.id = id
@@ -9,7 +5,7 @@ class Mark:
         self.mark = mark
 
 
-class MarkInfo():
+class MarkInfo:
     def __init__(self):
         self.marks = {}
 

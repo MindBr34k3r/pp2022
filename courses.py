@@ -26,4 +26,3 @@ class CourseInfo:
         print("{:3} | {:10} | {:20} ".format("No.", "ID", "Name"))
         for i in range(len(self.courses)):
             print("{:3} | {:10} | {:20} ".format(str(i+1), self.courses[i].id, self.courses[i].name))
-
