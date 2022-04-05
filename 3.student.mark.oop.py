@@ -31,7 +31,8 @@ def input_student_info():
         name = input("Name: ")
         dob = input("Date of Birth: ")
         mark = {}
-        students[id] = [name, dob, mark]
+        gpa = 0
+        students[id] = [name, dob, mark, gpa]
     print(f"{num} students have been added.")
 
 
@@ -73,7 +74,7 @@ def input_mark():
     else:
         for id in students:
             enter_mark = math.floor(float(input(f"Student ID: {id} - Student Name: {students[id][0]}\nInput mark: ")))
-            students[id][2] += {courses[course_id]: enter_mark}
+            students[id][2] = {courses[course_id][1]: enter_mark}
 
 
 def show_student_list():
@@ -88,34 +89,42 @@ def show_student_list():
 
 def show_course_list():
     i = 1
-    print("{:3} | {:10} | {:20}".format("No.", "ID", "Name"))
+    print("{:3} | {:10} | {:20} | {:10}".format("No.", "ID", "Name", "Credits"))
     for id in courses:
-        name = courses[id]
-        print("{:3} | {:10} | {:20}".format(str(i), id, name))
+        name = courses[id][0]
+        credit = courses[id][1]
+        print("{:3} | {:10} | {:20} | {:10}".format(str(i), id, name, credit))
         i = i+1
 
 
 def show_mark_list():
     i = 1
     course_id = select_course()
+    course_name = courses[course_id][1]
     if course_id == "None":
         print("There is no course like that!")
     else:
-        print(f"{course_id} mark sheet")
+        print(f"{course_name} mark sheet")
         print("{:3} | {:10} | {:20} | {:10}".format("No.", "ID", "Name", "Mark"))
         for id in students:
-            if students[id][2]["course"] == courses[course_id]:
-                name = students[id][0]
-                mark = students[id][2]["mark"]
-                print("{:3} | {:10} | {:20} | {:10}".format(str(i), id, name, mark))
-                i = i+1
+            name = students[id][0]
+            mark = students[id][2][course_name]
+            print("{:3} | {:10} | {:20} | {:10}".format(str(i), id, name, str(mark)))
+            i = i+1
 
 
-def calculate_gpa():
-    pass
+def calculate_gpa(student_id):
+    total_credit = 0
+    total_mark = 0
+    for id in courses:
+        total_credit = total_credit + courses[id][1]
 
 
-def show_gpa():
+
+def show_student_gpa():
+    student_id = select_student()
+    if student_id == "None":
+        print()
     pass
 
 
@@ -150,6 +159,12 @@ while not end:
     elif choice == "5":
         input_mark()
     elif choice == "6":
+        empty = is_empty(students)
+        if not empty:
+            show_mark_list()
+        else:
+            print("There are no students in class!")
+    elif choice == "7":
         empty = is_empty(students)
         if not empty:
             show_mark_list()
